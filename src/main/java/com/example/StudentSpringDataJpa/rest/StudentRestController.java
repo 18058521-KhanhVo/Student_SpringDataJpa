@@ -13,8 +13,8 @@ public class StudentRestController {
     private StudentService studentService;
 
     @PostMapping("/student")
-    public Student saveStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);
+    public void saveStudent(@RequestBody Student student) {
+        studentService.saveStudent(student);
     }
 
     @GetMapping("/student/{id}")
