@@ -8,31 +8,30 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
 
     @Override
     public Student saveStudent(Student student) {
-        student.setId(0);
-        studentRepository.save(student);
-        return  student;
+        studentRepository.saveStudent(student.getName(), student.getAge(), student.getPhone(), student.getAddress(), student.getJob());
+        return student;
     }
 
     @Override
     public Student getStudent(int id) {
-        Optional<Student> student= studentRepository.findById(id);
-        return student.get();
+        Student student = studentRepository.findStudentById(id);
+        return student;
     }
 
     @Override
     public void update(Student student) {
-        studentRepository.save(student);
+        studentRepository.updateStudent(student.getId(), student.getName(), student.getAge(), student.getPhone(), student.getAddress(), student.getJob());
     }
 
     @Override
     public void delete(Student student) {
-        studentRepository.delete(student);
+        studentRepository.deleteStudent(student.getId());
     }
 }
